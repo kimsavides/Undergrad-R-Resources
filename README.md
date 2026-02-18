@@ -1,0 +1,130 @@
+README
+================
+
+## Intro 💡
+
+*R is hard.* At first especially. But, R can be hard for pros too, and
+that’s ok. Programming languages and the tools we use in them are
+constantly evolving and changing–often for the better. If you step away
+from coding for some time, a week when you are starting out, a month or
+a year after getting into the groove, you will come back and probably
+feel everything is confusing again. That is also ok. It happens to all
+of us, especially ecologists who do not usually think “in code” like
+many computer scientists do. **All of this is ok!**
+
+Getting a solid foundation as you learn R and knowing where to look for
+help is key. Staying organized and documenting what you are doing and
+why is also key. Do these things and I promise, everything will be
+ok–probably better than ok!
+
+## Why R? Why GitHub? Why….? 🧐
+
+Well, to be bluntly honest, if you want to do science this is now the
+requirement. A few years ago, if you knew how to do a bit of R coding,
+you were primed for getting that postdoc position. Then, a few years
+later it was expected for incoming PhD students, now if you want to be
+competitive for a MS position? You guessed it, you need to be proficient
+in R, and GitHub doesn’t hurt either. Proficient doesn’t mean an expert,
+though. It means you know your way around, can access data, tidy that
+data, clean it, summarize it in tables/figures, and know how to fix
+errors and where to look for advise. That is totally achievable.
+
+**So, why R?** Doesn’t Excel do the same things? Kind of….for some
+things. Can Excel fidn the min/max/mean, make so graphs, and do some
+calculations–sure. But R is so much more. R is free, open source, is way
+more powerful, and has a community of people always working on making
+new things and fixing what’s broken. But most importantly, R makes you
+work **reproducible**. Reproducability is now key to all science. I
+should be able to take someone else’s data, run their script (the code
+they wrote), and get the same results they did–that’s reproducuability.
+This ensures others can check our work, expand on what we did, and be
+transparent about how we handled our data.
+
+In R, we take data, run it through a script (the code), and produce
+results. We can do this again and again, and we should get the same
+result. Every data cleaning step, tidying step, analysis step, and
+figure production is written out in code. This is where things really
+differ from Excel. In Excel you will need to do a lot of individual
+tasks, probably saving a munch of data files in between with weird names
+like “data_clean.csv”, then “data_clean_v2.csv”. Then when you are
+nearly finished, you will realize you forgot something or need to redo
+something else. Which file do you go back to? Do you remember what you
+did exactly? Can you reproduce what you did previously? I’m pretty sure
+the answer will be “no” – because I’ve done that and you probably have
+to in some way or another. R scripts are designed to take the raw data,
+clean it, do whatever else you need, and give you a product at the end.
+All the steps are there to see, to be explained, and to be runable again
+and again as we tweak things towards our final product. That’s why R is
+important to learn and use (among many other things that is).
+
+**Why GitHub?** Good question. It’s been the industry standard for
+computer scientists (think software develeopers, game designers) for a
+long time, and its now becoming the best practice for R coding as well.
+GitHub is the Google Docs of coding. Basically it is “version control”
+and tracks the changes in code between versions. If something was
+working before, and its not working now, you can see what changed in the
+code. Like Google Docs, its also cloud storage for your code. If your
+computer up and dies, your code is safe and sound in the cloud on
+GitHub. This has saved many an R coder before and will in the future
+too. Do you need to totally understand Git and GitHub to use it? *No,
+definetly not, that’s mostly for developers and industry folks*. Do you
+need to use it in your coding workflows for ecological data? *Yes* [^1].
+Learn and use it now to set yourself up better for the future.
+
+## R Building Blocks 🧱
+
+When you produce work for a class, you probably keep things in folders.
+Like “Documents/Cornell/Ornithology/Lab_1/” where all your data and
+write ups and such for Lab 1 are stored. If you want to work on Lab 1,
+your fundamental unit would be the Lab_1 folder–everything you need for
+the Lab 1 is in there. In R, our fundamental unit is called a “project”.
+A project is a folder that contains everything we need to do our
+analysis–the rest of our computer does not matter, its like it does not
+exist. When you create a project in R, it creates a folder and makes a
+file with the folder name with the extension `.Rproj` . This is the
+magic. Double click that file and your project loads right up and R now
+knows we are working on this project in this location, I only need to
+worry about what is here. If you use a project, finding files and saving
+things will be so much better, trust me! No more, “where did that
+save?”, “where did I put that data?”. Its all right here, in the
+project. And, the best part? Throw this on github, have someone else
+clone it, and they are good to go! All the file paths will work. They
+won’t need to change your code where you read the data in from your
+“C://user/Documents/I_want_this_folder/… .csv” to
+“C://user/Document/well_I_wanted_to_use_this_folder/… .csv”. Again,
+reproducability!
+
+Projects are just folders. So of course they hold things, all the things
+we need to get from data to our final product. The other main unit in R
+are “scripts”. Scripts hold code, its where the magic happens. Scripts
+tell R where to get data from, what to do with it (and how), and how we
+want to see what we produced along the way. Think of the script as the
+instruction manual for not only R, but also you and someone else. That’s
+the today you, the tomorrow you, and the you ten years from now. Scripts
+contain code to do things, but they also contain comments! Commenting
+out your code makes a good coder great! Code is for the computer, but
+comments are for humans.
+
+``` r
+# This is a comment, the line starts with a #
+# The next line is code, it doesn't start with a #
+1+2
+
+1+2   # you can add comments after code too!
+```
+
+### Project Structure 🗂️
+
+Organization is key—for most things, R projected included. And like most
+things, there are some standard conventions that make things easier and
+more familiar when working collaboratively. If stop lights were red in
+one state and blue in anther, that would be confusing, right? Same thing
+for R projects. We usually use the following structure.
+
+``` r
+Project_Name
+  |
+  |-- 
+```
+
+[^1]: ok, you got me. Technically no, but YES. Trust me, just do it!
