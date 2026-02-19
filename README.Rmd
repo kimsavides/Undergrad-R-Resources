@@ -1,5 +1,5 @@
 ---
-title: "README"
+title: "Undergrad R Resources"
 output: github_document
 ---
 
@@ -23,9 +23,15 @@ In R, we take data, run it through a script (the code), and produce results. We 
 
 ## R Building Blocks 🧱
 
-When you produce work for a class, you probably keep things in folders. Like "Documents/Cornell/Ornithology/Lab_1/" where all your data and write ups and such for Lab 1 are stored. If you want to work on Lab 1, your fundamental unit would be the Lab_1 folder–everything you need for the Lab 1 is in there. In R, our fundamental unit is called a "project". A project is a folder that contains everything we need to do our analysis–the rest of our computer does not matter, its like it does not exist. When you create a project in R, it creates a folder and makes a file with the folder name with the extension `.Rproj` . This is the magic. Double click that file and your project loads right up and R now knows we are working on this project in this location, I only need to worry about what is here. If you use a project, finding files and saving things will be so much better, trust me! No more, "where did that save?", "where did I put that data?". Its all right here, in the project. And, the best part? Throw this on github, have someone else clone it, and they are good to go! All the file paths will work. They won't need to change your code where you read the data in from your "C://user/Documents/I_want_this_folder/... .csv" to "C://user/Document/well_I_wanted_to_use_this_folder/... .csv". Again, reproducability!
+### R Projects
 
-Projects are just folders. So of course they hold things, all the things we need to get from data to our final product. The other main unit in R are "scripts". Scripts hold code, its where the magic happens. Scripts tell R where to get data from, what to do with it (and how), and how we want to see what we produced along the way. Think of the script as the instruction manual for not only R, but also you and someone else. That's the today you, the tomorrow you, and the you ten years from now. Scripts contain code to do things, but they also contain comments! Commenting out your code makes a good coder great! Code is for the computer, but comments are for humans.
+When you produce work for a class, you probably keep things in folders. Like "Documents/Cornell/Ornithology/Lab_1/" where all your data and write ups and such for Lab 1 are stored. If you want to work on Lab 1, your fundamental unit would be the Lab_1 folder—everything you need for Lab 1 is in there. In R, our fundamental unit is called a "project". A project is a folder that contains everything we need to do our analysis—the rest of our computer does not matter, its like it does not exist. When you create a project in R, it creates a folder and makes a file with the folder name with the extension `.Rproj` . This is the magic. Double click that file and your project loads right up and R now knows that we are working on this thing in this location and we only need to worry about what is here. If you use a project, finding files and saving things will be so much better, trust me! No more, "where did that save?", "where did I put that data?". Its all right here, in the project. And, the best part? Throw this on github, have someone else clone it, and they are good to go! All the file paths will work. They won't need to change your code where you read the data in from your "C://user/Documents/I_want_this_folder/... .csv" to "C://user/Document/well_I_wanted_to_use_this_folder/... .csv". Again, reproducability!
+
+Projects are just folders with a .Rproj file int it. Each project should be a——well, a project. We have an eoclogical question we want to answer, that's our project. Our R project should reflect that. A data analyst has lots of different R projects, each with its own task. You don't want a huge R project that spans multiple quetsions or multiple ideas. We want managable units that can be self contained, runable from data to product, and be sharable! So, you might have a project `2026-FeederWatch-ChickadeesTrends` for looking at trends in chickadee abunance over time, and `2026-NestWatch-RobinSuccess` for looking at nesting success of Robins. Each will have starting data, analysis code, and final products. Even if you share starting data, or even some analysis, different main questions use different projects: `2026-NestWatch-RobinSuccess` and `2026-NestWatch-NestUsurption` may both share the NestWatch dataset, but one might be asking what species usurp (take-over) nests of other species while the other is asking how has American Robin nesting success changed over space and time. Different question = Different R project. And everything we need to get from data to our final product should be in our project.
+
+### R Scripts
+
+The other main unit in R is the "script". Scripts hold code, its where the magic happens. Scripts tell R where to get data from, what to do with it (and how), and how we want to see what we produced along the way. Think of the script as the instruction manual for not only R, but also you and someone else. That's the today you, the tomorrow you, and the you ten years from now. Scripts contain code to do things, but they also contain comments! Commenting out your code makes a good coder great! Code is for the computer, but comments are for humans.
 
 ``` r
 # This is a comment, the line starts with a #
@@ -37,10 +43,44 @@ Projects are just folders. So of course they hold things, all the things we need
 
 ### Project Structure 🗂️
 
-Organization is key—for most things, R projected included. And like most things, there are some standard conventions that make things easier and more familiar when working collaboratively. If stop lights were red in one state and blue in anther, that would be confusing, right? Same thing for R projects. We usually use the following structure.
+Organization is key—for most things, R projected included. And like most things, there are some standard conventions that make things easier and more familiar when working collaboratively. If stop lights were red in one state and blue in anther, that would be confusing, right? Same thing for R projects. We usually use the following structure:
 
-``` r
-Project_Name
-  |
-  |-- 
-```
+![](figures/project_structure.png)
+
+Here we see in R the contents of our project folder. This folder lives on my computer in the folder "Small Projects" and the project is called "Undergrad-R-Resources". We see everything in that folder. Lets break down what is here, some of it I made, some of it is automatic, but all of these are standard practice among R coders who make good, reproducbale code workflows.
+
+-   Undergrad-R-Resources.Rproj This is the project file, the glue that holds everything together
+
+-   README.Rmd Where I am typing right now, it explains what the project is about
+
+-   README.md This is what actually renders on the github page form the README
+
+-   .Rhistory Not really that important
+
+-   .gitignore Tells github what to not worry about (like data to large or sensitive)
+
+-   data-raw Folder holding RAW DATA ONLY (your starting point, your fallback)
+
+-   data Folder holding any processed data (cleaned, subset, etc.)
+
+-   scripts Folder holding scripts (each should be numbered and named well)
+
+-   figures Folder holding all your figures (formatted tables often go here too)
+
+-   (docs) Sometimes you may see a docs folder, for docs like manuscipts
+
+-   (spatial) If you have spatial data, keep that separate, those files are huge
+
+-   (results) Sometimes used to store final products of analyses (like final data)
+
+The .Rhistory, .gitignore, README, and the project file are all automatically created when you create the project or get it setup on GitHub. Don't change their location. You create the folders and populate them with the data and code. The important thing here is everything lives in a folder and each folder has a purpose. And the most important thing is that `data-raw` and `data` are different. Your starting data (raw data) goes in `data-raw`. This is your starting point and your fall back. It doesn't matter if your starting data is technically pre-processed (most data is to some degree) or is truly raw—all starting data that you are working with goes here. We read in the raw data, transform it in some way (liek filterign or cleaning) and we save that data as a new file in `data`. Never write over files in `data-raw` and never save processes data in `data-raw`—NO EXCEPTIONS. (As a data scientist I don't choose many hills to die on, but if there's one then this is the one).
+
+`scripts` will hold all your scripts, from downloading data, to cleaning, to analysis, and to producing your final thing. That thing could be some figures, or some tables, or a combination of both. You should have multiple scripts. Your project is your overall question. Your individual scripts contain tasks that are necessary to answer that question. I usually have at least three scripts. Each script should be numbered so you know what order they happen in and should be names in a way that tells you what question and what task are we working on. I usually use the following convention:
+
+-   01-ShortProjectName-dataclean
+
+-   02-ShortProjectName-specificanaysis
+
+-   03-ShortProjectName-specificfigure
+
+By looking at the file name, we can see the order in which we need to run the scripts, what question they answer (in case they end up in a weird spot outside our project folder), and what is being done in the script. Data cleaning scripts take the raw data, process it into something usable for our question and save that new file in `data`. Then any analysis scripts use that processed data file, do an analysis, produce a or many results, and store those results. Different analyses should have different scripts. Then figure scripts take results and produce nice looking products like formatted tables or figures. If you want to change the font size of your figure, you don't necessarily want to rerun all your analyses. Keeping a separate figure script is unbelievably helpful.
