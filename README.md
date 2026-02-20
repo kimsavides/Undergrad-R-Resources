@@ -229,4 +229,62 @@ want to change the font size of your figure, you don’t necessarily want
 to rerun all your analyses. Keeping a separate figure script is
 unbelievably helpful.
 
+## Coding in R
+
+There are tons of tutorials and courses out there about learning to code
+in R. I could not do any of those justice my reproducing them here. You
+also should never learn to code form just one person. There tons of ways
+to learn to code and a ton of ways to do the same thing.
+
+### R “dialects”
+
+For example, if R is a language, there are two main dialects: `base R`
+and `dplyr (or tidyverse)`. You can get both to do the same thing, just
+in different ways and different difficulty levels. I used both, and
+switch back and forth depending on the task. Some people uses only base
+(it has few dependencies and is less likely to break in the future).
+Dplyr reads more like text than code, is built to use functions that
+combine many different individual tasks, and encompass the idea of “tidy
+data” and “data carpentry”. Tidy data is a hard concept to explain, but
+this usually means “vectorizing” the data—turning many columns into
+fewer. For example, if you have a dataset about tree DBH overtime. You
+could have a column for the tree ID#, a column for the measure in 2020,
+then another for 2021, and so on. This is easy for a human to read, but
+not a computer. Tidy data principles would “pivot” this data into 3
+columns: Tree_ID, Year, and DBH. You can learn more than you ever wanted
+to about tidy data here: <https://r4ds.had.co.nz/tidy-data.html>
+
+So you know what these two dialects usually look like, lets show an
+example. Lets say we have some data in a file called `field_data`. It
+has tree_id, year, and DBH as columns. We want to filter all the data to
+only get the lines where data was collected in 2026. Base R code usually
+looks something like this:
+
+``` r
+filtered_data <- field_data[ , field_data$year == "2026"]  # get all rows where year is 2026
+```
+
+In dplry, this would look like this. The `%>%` is called a pipe, and it
+passes data along:
+
+``` r
+filtered_data <- field_data %>% filter(year == "2026")  # get all rows where year is 2026
+```
+
+Both do exactly the same thing, just in different ways. If you see `%>%`
+you are seeing dplyr or tidyverse code. If you don’t, and especially if
+you see `[ ]` that is probably more towards base R code. Knowing this
+may help you understand what you are looking at and to trouble
+shoot/know what to google. Adding “base r” or “dplyr” in a query usually
+helps get you towards what you are looking for.
+
+### Learning to Code
+
+I do not have the bandwidth to put together a full tutorial from
+scratch. So, here is the exact place I learned. This is a course from
+Ethan White, a professor at University of Florida. He’s an ecologist,
+data scientist, and all around cool dude. And he was cool enough to make
+his course publicly available for everyone. It has exercises,
+“lectures”, and instructional videos (which are actually fun to watch).
+
 [^1]: ok, you got me. Technically no, but YES. Trust me, just do it!
