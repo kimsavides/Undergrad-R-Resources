@@ -30,7 +30,7 @@ data, clean it, summarize it in tables/figures, and know how to fix
 errors and where to look for advise. That is totally achievable.
 
 **So, why R?** Doesn’t Excel do the same things? Kind of….for some
-things. Can Excel fidn the min/max/mean, make so graphs, and do some
+things. Can Excel find the min/max/mean, make so graphs, and do some
 calculations–sure. But R is so much more. R is free, open source, is way
 more powerful, and has a community of people always working on making
 new things and fixing what’s broken. But most importantly, R makes you
@@ -58,7 +58,7 @@ and again as we tweak things towards our final product. That’s why R is
 important to learn and use (among many other things that is).
 
 **Why GitHub?** Good question. It’s been the industry standard for
-computer scientists (think software develeopers, game designers) for a
+computer scientists (think software developers, game designers) for a
 long time, and its now becoming the best practice for R coding as well.
 GitHub is the Google Docs of coding. Basically it is “version control”
 and tracks the changes in code between versions. If something was
@@ -67,7 +67,7 @@ code. Like Google Docs, its also cloud storage for your code. If your
 computer up and dies, your code is safe and sound in the cloud on
 GitHub. This has saved many an R coder before and will in the future
 too. Do you need to totally understand Git and GitHub to use it? *No,
-definetly not, that’s mostly for developers and industry folks*. Do you
+definitely not, that’s mostly for developers and industry folks*. Do you
 need to use it in your coding workflows for ecological data? *Yes* [^1].
 Learn and use it now to set yourself up better for the future.
 
@@ -97,14 +97,14 @@ won’t need to change your code where you read the data in from your
 reproducability!
 
 Projects are just folders with a .Rproj file int it. Each project should
-be a——well, a project. We have an eoclogical question we want to answer,
+be a——well, a project. We have an ecological question we want to answer,
 that’s our project. Our R project should reflect that. A data analyst
 has lots of different R projects, each with its own task. You don’t want
-a huge R project that spans multiple quetsions or multiple ideas. We
-want managable units that can be self contained, runable from data to
+a huge R project that spans multiple questions or multiple ideas. We
+want manageable units that can be self contained, runable from data to
 product, and be sharable! So, you might have a project
 `2026-FeederWatch-ChickadeesTrends` for looking at trends in chickadee
-abunance over time, and `2026-NestWatch-RobinSuccess` for looking at
+abundance over time, and `2026-NestWatch-RobinSuccess` for looking at
 nesting success of Robins. Each will have starting data, analysis code,
 and final products. Even if you share starting data, or even some
 analysis, different main questions use different projects:
@@ -176,7 +176,7 @@ reproducbale code workflows.
 - figures Folder holding all your figures (formatted tables often go
   here too)
 
-- (docs) Sometimes you may see a docs folder, for docs like manuscipts
+- (docs) Sometimes you may see a docs folder, for docs like manuscripts
 
 - (spatial) If you have spatial data, keep that separate, those files
   are huge
@@ -194,7 +194,7 @@ thing is that `data-raw` and `data` are different. Your starting data
 back. It doesn’t matter if your starting data is technically
 pre-processed (most data is to some degree) or is truly raw—all starting
 data that you are working with goes here. We read in the raw data,
-transform it in some way (liek filterign or cleaning) and we save that
+transform it in some way (like filtering or cleaning) and we save that
 data as a new file in `data`. Never write over files in `data-raw` and
 never save processes data in `data-raw`—NO EXCEPTIONS. (As a data
 scientist I don’t choose many hills to die on, but if there’s one then
@@ -239,23 +239,24 @@ to learn to code and a ton of ways to do the same thing.
 ### R “dialects”
 
 For example, if R is a language, there are two main dialects: `base R`
-and `dplyr (or tidyverse)`. You can get both to do the same thing, just
-in different ways and different difficulty levels. I used both, and
+and `tidyverse (or dplyr)`. You can get both to do the same thing, just
+in different ways and different difficulty levels. I use both, and
 switch back and forth depending on the task. Some people uses only base
 (it has few dependencies and is less likely to break in the future).
-Dplyr reads more like text than code, is built to use functions that
-combine many different individual tasks, and encompass the idea of “tidy
-data” and “data carpentry”. Tidy data is a hard concept to explain, but
-this usually means “vectorizing” the data—turning many columns into
-fewer. For example, if you have a dataset about tree DBH overtime. You
-could have a column for the tree ID#, a column for the measure in 2020,
-then another for 2021, and so on. This is easy for a human to read, but
-not a computer. Tidy data principles would “pivot” this data into 3
-columns: Tree_ID, Year, and DBH. You can learn more than you ever wanted
-to about tidy data here: <https://r4ds.had.co.nz/tidy-data.html>
+Dplyr reads more like text than code, is built around chaining functions
+togther to combine many different individual tasks, and encompass the
+idea of “tidy data” and “data carpentry”. Tidy data is a hard concept to
+explain, but this usually means “vectorizing” the data—turning many
+columns into fewer. For example, lets say you have a dataset about tree
+DBH overtime. You could have a column for the tree ID#, a column for the
+measure in 2020, then another for 2021, and so on. This is easy for a
+human to read, but not a computer. Tidy data principles say to “pivot”
+(transform) this data into 3 columns: tree_id, year, and DBH. You can
+learn more than you ever wanted about tidy data here:
+<https://r4ds.had.co.nz/tidy-data.html>
 
-So you know what these two dialects usually look like, lets show an
-example. Lets say we have some data in a file called `field_data`. It
+To get a sense of what these two dialects usually look like, lets show
+an example. Lets say we have some data in a file called `field_data`. It
 has tree_id, year, and DBH as columns. We want to filter all the data to
 only get the lines where data was collected in 2026. Base R code usually
 looks something like this:
@@ -264,19 +265,20 @@ looks something like this:
 filtered_data <- field_data[ , field_data$year == "2026"]  # get all rows where year is 2026
 ```
 
-In dplry, this would look like this. The `%>%` is called a pipe, and it
-passes data along:
+In the tidyverse, the same thing would look like this. The `%>%` is
+called a pipe, and it passes data along, in this case taking
+`field_data` and passing that through the function `filter()`:
 
 ``` r
 filtered_data <- field_data %>% filter(year == "2026")  # get all rows where year is 2026
 ```
 
 Both do exactly the same thing, just in different ways. If you see `%>%`
-you are seeing dplyr or tidyverse code. If you don’t, and especially if
+you are seeing tidyverse (dplyr) code. If you don’t, and especially if
 you see `[ ]` that is probably more towards base R code. Knowing this
-may help you understand what you are looking at and to trouble
-shoot/know what to google. Adding “base r” or “dplyr” in a query usually
-helps get you towards what you are looking for.
+distinction may help you understand what you are looking at and how to
+trouble shoot/know what to google. Adding “base r” or “dplyr” in a query
+usually helps get you towards what you are looking for.
 
 ### Learning to Code
 
@@ -285,6 +287,65 @@ scratch. So, here is the exact place I learned. This is a course from
 Ethan White, a professor at University of Florida. He’s an ecologist,
 data scientist, and all around cool dude. And he was cool enough to make
 his course publicly available for everyone. It has exercises,
-“lectures”, and instructional videos (which are actually fun to watch).
+“lectures”, and instructional videos (which are actually fun to watch):
+
+- 🤩[Data Carpentry for
+  Biologists](https://datacarpentry.github.io/semester-biology/schedule/)
+
+I suggest working through weeks 1-5 and 13 as a starting point. If you
+work with spatial data or do repetitive tasks, check out the spatial or
+repeating things sections.
+
+There are a ton of other tutorials and open access courses out there.
+Feel free to explore!
+
+### Errors / Warnings / Messages
+
+At some point you will see warnings or errors down in your console.
+Messages usually just give you some more information. You see these a
+lot when loading a package, such as “Build using R version …”. Warnings
+are sometimes totally ok and expected (happens when using spatial data
+pretty often). But warnings should be taken seriously, they may actually
+be warning you that R did do the task you asked, but the results may not
+be what you were expecting. Errors will stop you code run. Which is
+good! That means there was something that broke. Some error messages are
+helpful and will guide you to the solution. Some are generic and totally
+not helpful. You can copy the error message and paste that into google.
+Responses in stackoverflow are usually very helpful, and usually many
+people have posted about commonly experienced error message. Another
+option is to use an LLM.
+
+#### Using LLMs
+
+I want to start with cautionary warning. LLMs can help you code, and are
+getting better, BUT they are not always right. They can and will at some
+point take you in loops “hallucinating” functions that do not exist or
+not solving the problem. You should also ALWAYS be careful what
+information you give the LLM. They are always being trained off of what
+you give it. Never give an LLM any sensitive data. That begin said they
+can be very helpful when used correctly. But you will never get good at
+coding if you rely on it solely.
+
+When asking an LLM for help, always start with “I am coding in R. I have
+a dataframe, and I an trying to \_\_\_\_\_. My data looks like
+\_\_\_\_\_.” LLMs work well for doing if you give small examples and
+focus on what is important. You never have to tell it what you are
+really investigating, you can be super vauge. For instance using our
+tree example again. I could say “I am coding in R. I have a dataframe of
+data where one of several columns is year. Can you help me write some
+base R code to keep only lines where year is 2026?”
+
+LLMs can be pretty helpful in decoding error and warning messages. Paste
+in your error or warning and it might be able to tell you what you did
+to produce the error. It also helps if you put the code that produced
+the error.
+
+<u>***Cautionary Note:***</u> Not all code LLMs produce will work (or do
+what you thought it would do). Same thing for code you find online.
+Malicious code snippets do exist online. As a rule, you should always be
+cautious of running code you do not know what it does. This is hard when
+you are starting out. If you are unsure, you can google it and see if
+multiple people have “upvoted” a response. That is usually a good
+indication the code is fine and is more likely to work.
 
 [^1]: ok, you got me. Technically no, but YES. Trust me, just do it!
